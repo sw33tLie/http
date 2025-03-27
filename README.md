@@ -12,6 +12,7 @@ The following modifications have been made:
 
 - **Unrestricted header values**: All characters are now allowed in header field names and values (including spaces, tabs and similar)
 - **No header canonicalization**: HTTP header names are not canonicalized anymore (e.g. `x-test: asd` is not changed to `X-Test: asd`)
+- **Content-Length**: You can now disable sending the `Content-Length` header by calling `DoNotSendContentLength()`. Revert that anytime by calling `DoSendContentLength()`. By default, the `Content-Length` header is sent so that it doesn't break compatibility with tools that relied on the normal net/http behavior.
 - **Default User-Agent**: The default user agent has been changed to a more common browser string (latest Chrome)
 
 Note that all patches have this comment to easily spot them in the code:

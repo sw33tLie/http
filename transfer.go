@@ -252,19 +252,21 @@ func noResponseBodyExpected(requestMethod string) bool {
 	return requestMethod == "HEAD"
 }
 
+// sw33tLie patch
 var skipSendingContentLength = false
 
+// sw33tLie patch
 func DoNotSendContentLength() {
 	skipSendingContentLength = true
 }
 
+// sw33tLie patch
 func DoSendContentLength() {
 	skipSendingContentLength = false
 }
 
 func (t *transferWriter) shouldSendContentLength() bool {
-	fmt.Println("shouldSendContentLength", t.TransferEncoding, t.ContentLength, t.Method, skipSendingContentLength)
-
+	// sw33tLie patch
 	if skipSendingContentLength {
 		return false
 	}
