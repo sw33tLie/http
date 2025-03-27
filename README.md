@@ -17,7 +17,7 @@ The following modifications have been made:
 - **Invalid characters in HTTP method**: You can now use invalid characters in HTTP method names. This is particularly convinient when you want to manipulate the entire first line (path & http version) of the HTTP request, as you can use the method to set the entire line, then simply add a newline character and a bogus header name to make the final request valid:
 
 ```go
-	req, err := http.NewRequest("GET http://anything/ HTTP/0.9\r\nx: ", "http://example.com/", strings.NewReader("body"))
+req, err := http.NewRequest("GET http://anything/ HTTP/0.9\r\nx: ", "http://example.com/", strings.NewReader("body"))
 ```
 
 The final request will be:
