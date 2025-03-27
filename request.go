@@ -100,7 +100,6 @@ func badStringError(what, val string) error { return fmt.Errorf("%s %q", what, v
 var reqWriteExcludeHeader = map[string]bool{
 	"Host":              true, // not in Header map anyway
 	"User-Agent":        true,
-	"Content-Length":    true,
 	"Transfer-Encoding": true,
 	"Trailer":           true,
 }
