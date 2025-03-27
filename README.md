@@ -20,7 +20,7 @@ The following modifications have been made:
 req, err := http.NewRequest("GET http://anything/ HTTP/0.9\r\nx: ", "http://example.com/", strings.NewReader("body"))
 ```
 
-The final request will be:
+	The final request will be:
 
 ```http
 GET http://anything/ HTTP/0.9
