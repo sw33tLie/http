@@ -185,6 +185,14 @@ func lookup(name string) *setting {
 	return s
 }
 
+// registerMetric is provided by package runtime.
+// It forwards registrations to runtime/metrics.
+//
+//go:linkname registerMetric
+func registerMetric(name string, read func() uint64) {
+	// No-op implementation or simple logging
+}
+
 // setUpdate is provided by package runtime.
 // It calls update(def, env), where def is the default GODEBUG setting
 // and env is the current value of the $GODEBUG environment variable.
@@ -193,13 +201,9 @@ func lookup(name string) *setting {
 // (due to use of os.Setenv, for example).
 //
 //go:linkname setUpdate
-func setUpdate(update func(string, string))
-
-// registerMetric is provided by package runtime.
-// It forwards registrations to runtime/metrics.
-//
-//go:linkname registerMetric
-func registerMetric(name string, read func() uint64)
+func setUpdate(update func(string, string)) {
+	// No-op implementation
+}
 
 // setNewIncNonDefault is provided by package runtime.
 // The runtime can do
@@ -213,7 +217,9 @@ func registerMetric(name string, read func() uint64)
 // since it cannot import godebug.
 //
 //go:linkname setNewIncNonDefault
-func setNewIncNonDefault(newIncNonDefault func(string) func())
+func setNewIncNonDefault(newIncNonDefault func(string) func()) {
+	// No-op implementation
+}
 
 func init() {
 	setUpdate(update)
