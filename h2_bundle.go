@@ -7312,7 +7312,8 @@ const (
 	// we buffer per stream.
 	http2transportDefaultStreamFlow = 4 << 20
 
-	http2defaultUserAgent = "Go-http-client/2.0"
+	// sw33tLie patch
+	http2defaultUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 
 	// initialMaxConcurrentStreams is a connections maxConcurrentStreams until
 	// it's received servers initial SETTINGS frame, which corresponds with the

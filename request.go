@@ -18,8 +18,6 @@ import (
 	"maps"
 	"mime"
 	"mime/multipart"
-	"github.com/sw33tLie/http/httptrace"
-	"github.com/sw33tLie/http/internal/ascii"
 	"net/textproto"
 	"net/url"
 	urlpkg "net/url"
@@ -27,6 +25,9 @@ import (
 	"strings"
 	"sync"
 	_ "unsafe" // for linkname
+
+	"github.com/sw33tLie/http/httptrace"
+	"github.com/sw33tLie/http/internal/ascii"
 
 	"golang.org/x/net/http/httpguts"
 	"golang.org/x/net/idna"
@@ -542,7 +543,8 @@ func valueOrDefault(value, def string) string {
 // It was changed at the time of Go 1.1 release because the former User-Agent
 // had ended up blocked by some intrusion detection systems.
 // See https://codereview.appspot.com/7532043.
-const defaultUserAgent = "Go-http-client/1.1"
+// sw33tLie patch
+const defaultUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
 
 // Write writes an HTTP/1.1 request, which is the header and body, in wire format.
 // This method consults the following fields of the request:
