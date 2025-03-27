@@ -13,7 +13,7 @@ import (
 	"errors"
 	"io"
 	"net"
-	"net/http/internal/testcert"
+	"github.com/sw33tLie/http/internal/testcert"
 	"strings"
 	"testing"
 )

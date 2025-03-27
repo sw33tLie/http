@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"errors"
 	"io"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"strings"
 	"testing"
 	"time"

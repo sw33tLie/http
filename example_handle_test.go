@@ -7,7 +7,7 @@ package http_test
 import (
 	"fmt"
 	"log"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"sync"
 )
 

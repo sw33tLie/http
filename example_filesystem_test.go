@@ -8,7 +8,7 @@ import (
 	"io"
 	"io/fs"
 	"log"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"strings"
 )
 

@@ -6,8 +6,8 @@ package http
 
 import (
 	"io"
-	"net/http/httptrace"
-	"net/http/internal/ascii"
+	"github.com/sw33tLie/http/httptrace"
+	"github.com/sw33tLie/http/internal/ascii"
 	"net/textproto"
 	"slices"
 	"strings"

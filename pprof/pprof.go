@@ -12,10 +12,10 @@
 //
 // To use pprof, link this package into your program:
 //
-//	import _ "net/http/pprof"
+//	import _ "github.com/sw33tLie/http/pprof"
 //
 // If your application is not already running an http server, you
-// need to start one. Add "net/http" and "log" to your imports and
+// need to start one. Add "github.com/sw33tLie/http" and "log" to your imports and
 // the following code to your main function:
 //
 //	go func() {
@@ -80,7 +80,7 @@ import (
 	"internal/profile"
 	"io"
 	"log"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"net/url"
 	"os"
 	"runtime"

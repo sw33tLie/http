@@ -8,7 +8,7 @@ import (
 	"context"
 	"crypto/tls"
 	"io"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"net/url"
 	"reflect"
 	"strings"

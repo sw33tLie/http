@@ -12,14 +12,15 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"internal/testenv"
 	"io"
-	"net/http"
-	"net/http/httptest"
+	"github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/httptest"
 	"net/url"
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/sw33tLie/http/internal/testenv"
 )
 
 // This test is a CGI host (testing host.go) that runs its own binary

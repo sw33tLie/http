@@ -16,9 +16,9 @@ import (
 	"bytes"
 	"fmt"
 	"log"
-	"net/http"
-	"net/http/pprof"
-	"net/http/httptest"
+	"github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/pprof"
+	"github.com/sw33tLie/http/httptest"
 	"runtime"
 )
 

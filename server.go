@@ -1157,7 +1157,7 @@ func relevantCaller() runtime.Frame {
 	var frame runtime.Frame
 	for {
 		frame, more := frames.Next()
-		if !strings.HasPrefix(frame.Function, "net/http.") {
+		if !strings.HasPrefix(frame.Function, "github.com/sw33tLie/http.") {
 			return frame
 		}
 		if !more {
@@ -1891,7 +1891,7 @@ func (e statusError) Error() string { return StatusText(e.code) + ": " + e.text 
 // While any panic from ServeHTTP aborts the response to the client,
 // panicking with ErrAbortHandler also suppresses logging of a stack
 // trace to the server's error log.
-var ErrAbortHandler = errors.New("net/http: abort Handler")
+var ErrAbortHandler = errors.New("github.com/sw33tLie/http: abort Handler")
 
 // isCommonNetReadError reports whether err is a common error
 // encountered during reading a request off the network when the
@@ -2208,7 +2208,7 @@ func (w *response) sendExpectationFailed() {
 // and a [Hijacker].
 func (w *response) Hijack() (rwc net.Conn, buf *bufio.ReadWriter, err error) {
 	if w.handlerDone.Load() {
-		panic("net/http: Hijack called after ServeHTTP finished")
+		panic("github.com/sw33tLie/http: Hijack called after ServeHTTP finished")
 	}
 	w.disableWriteContinue()
 	if w.wroteHeader {
@@ -2233,7 +2233,7 @@ func (w *response) CloseNotify() <-chan bool {
 	w.lazyCloseNotifyMu.Lock()
 	defer w.lazyCloseNotifyMu.Unlock()
 	if w.handlerDone.Load() {
-		panic("net/http: CloseNotify called after ServeHTTP finished")
+		panic("github.com/sw33tLie/http: CloseNotify called after ServeHTTP finished")
 	}
 	if w.closeNotifyCh == nil {
 		w.closeNotifyCh = make(chan bool, 1)

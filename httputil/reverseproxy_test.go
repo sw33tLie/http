@@ -15,21 +15,26 @@ import (
 	"io"
 	"log"
 	"net"
-	"net/http"
-	"net/http/httptest"
-	"net/http/httptrace"
-	"net/http/internal/ascii"
 	"net/textproto"
 	"net/url"
 	"os"
 	"reflect"
 	"runtime"
 	"slices"
+
+	"github.com/sw33tLie/http/httptrace"
+
+	"github.com/sw33tLie/http/httptest"
+
+	"github.com/sw33tLie/http"
+
 	"strconv"
 	"strings"
 	"sync"
 	"testing"
 	"time"
+
+	"github.com/sw33tLie/http/internal/ascii"
 )
 
 const fakeHopHeader = "X-Fake-Hop-Header-For-Test"

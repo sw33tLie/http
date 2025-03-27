@@ -39,7 +39,7 @@ import (
 	"math/bits"
 	mathrand "math/rand"
 	"net"
-	"net/http/httptrace"
+	"github.com/sw33tLie/http/httptrace"
 	"github.com/sw33tLie/http/internal/httpcommon"
 	"net/textproto"
 	"net/url"
@@ -8539,7 +8539,7 @@ func (cc *http2ClientConn) closeForLostPing() {
 
 // errRequestCanceled is a copy of net/http's errRequestCanceled because it's not
 // exported. At least they'll be DeepEqual for h1-vs-h2 comparisons tests.
-var http2errRequestCanceled = errors.New("net/http: request canceled")
+var http2errRequestCanceled = errors.New("github.com/sw33tLie/http: request canceled")
 
 func (cc *http2ClientConn) responseHeaderTimeout() time.Duration {
 	if cc.t.t1 != nil {
@@ -8698,7 +8698,7 @@ func (cs *http2clientStream) doRequest(req *Request, streamf func(*http2clientSt
 	cs.cleanupWriteRequest(err)
 }
 
-var http2errExtendedConnectNotSupported = errors.New("net/http: extended connect not supported by peer")
+var http2errExtendedConnectNotSupported = errors.New("github.com/sw33tLie/http: extended connect not supported by peer")
 
 // writeRequest sends a request.
 //
@@ -9829,7 +9829,7 @@ func (b http2transportResponseBody) Read(p []byte) (n int, err error) {
 		if int64(n) > cs.bytesRemain {
 			n = int(cs.bytesRemain)
 			if err == nil {
-				err = errors.New("net/http: server replied with more than declared Content-Length; truncated")
+				err = errors.New("github.com/sw33tLie/http: server replied with more than declared Content-Length; truncated")
 				cs.abortStream(err)
 			}
 			cs.readErr = err

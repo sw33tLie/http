@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"net/url"
 	"strings"
 	"time"

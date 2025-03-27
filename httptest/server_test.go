@@ -8,7 +8,7 @@ import (
 	"bufio"
 	"io"
 	"net"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"sync"
 	"testing"
 )

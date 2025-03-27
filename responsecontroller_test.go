@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	. "net/http"
+	. "github.com/sw33tLie/http"
 	"os"
 	"sync"
 	"testing"

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"os"
 	"runtime"
 	"slices"

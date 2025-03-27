@@ -6,7 +6,8 @@ package http_test
 
 import (
 	"errors"
-	"internal/synctest"
+
+	"github.com/sw33tLie/http/internal/synctest"
 )
 
 var errStillRunning = errors.New("async op still running")

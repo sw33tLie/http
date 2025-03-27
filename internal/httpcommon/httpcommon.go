@@ -7,7 +7,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"net/http/httptrace"
+	"github.com/sw33tLie/http/httptrace"
 	"net/textproto"
 	"net/url"
 	"sort"

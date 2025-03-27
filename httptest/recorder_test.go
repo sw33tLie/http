@@ -7,7 +7,7 @@ package httptest
 import (
 	"fmt"
 	"io"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"testing"
 )
 

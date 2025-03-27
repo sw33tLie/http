@@ -6,7 +6,7 @@ package cookiejar
 
 import (
 	"fmt"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"net/url"
 	"slices"
 	"strings"

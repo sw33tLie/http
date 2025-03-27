@@ -8,8 +8,8 @@ import (
 	"context"
 	"io"
 	"net"
-	"net/http"
-	"net/http/httptrace"
+	"github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/httptrace"
 	"testing"
 )
 

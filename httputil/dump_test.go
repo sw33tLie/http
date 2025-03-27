@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"io"
 	"math/rand"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"net/url"
 	"runtime"
 	"runtime/pprof"

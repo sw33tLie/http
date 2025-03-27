@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 	"maps"
-	"net/http"
+	"github.com/sw33tLie/http"
 	"os"
 	"path"
 	"slices"
