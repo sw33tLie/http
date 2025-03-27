@@ -62,7 +62,7 @@ func main() {
 	req.Header.Add("x-test\n 123\nx", "x")
 
 	http.DoNotSendContentLength()
-	// http.DoSendContentLength() // if you want to revert DoSendContentLength()
+	// http.DoSendContentLength() // if you want to revert DoNotSendContentLength()
 
 	client := &http.Client{
 		Transport: &http.Transport{
