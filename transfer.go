@@ -9,12 +9,8 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/sw33tLie/http/internal/godebug"
 	"io"
 	"maps"
-	"github.com/sw33tLie/http/httptrace"
-	"github.com/sw33tLie/http/internal"
-	"github.com/sw33tLie/http/internal/ascii"
 	"net/textproto"
 	"reflect"
 	"slices"
@@ -22,6 +18,11 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/sw33tLie/http/httptrace"
+	"github.com/sw33tLie/http/internal"
+	"github.com/sw33tLie/http/internal/ascii"
+	"github.com/sw33tLie/http/internal/godebug"
 
 	"github.com/sw33tLie/http/internal/httpguts"
 )
@@ -252,6 +253,7 @@ func noResponseBodyExpected(requestMethod string) bool {
 }
 
 func (t *transferWriter) shouldSendContentLength() bool {
+	fmt.Println("shouldSendContentLength", t.TransferEncoding, t.ContentLength, t.Method)
 	if chunked(t.TransferEncoding) {
 		return false
 	}
