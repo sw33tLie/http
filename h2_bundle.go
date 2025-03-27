@@ -40,7 +40,7 @@ import (
 	mathrand "math/rand"
 	"net"
 	"net/http/httptrace"
-	"net/http/internal/httpcommon"
+	"github.com/sw33tLie/http/internal/httpcommon"
 	"net/textproto"
 	"net/url"
 	"os"
