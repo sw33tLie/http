@@ -14,7 +14,23 @@ The following modifications have been made:
 - **No header canonicalization**: HTTP header names are not canonicalized anymore (e.g. `x-test: asd` is not changed to `X-Test: asd`)
 - **Content-Length**: You can now disable sending the `Content-Length` header by calling `DoNotSendContentLength()`. Revert that anytime by calling `DoSendContentLength()`. By default, the `Content-Length` header is sent when a body is provided so that it doesn't break compatibility with tools that relied on the normal net/http behavior.
 - **Default User-Agent**: The default user agent has been changed to a more common browser string (latest Chrome)
+- **Invalid characters in HTTP method**: You can now use invalid characters in HTTP method names. This is particularly convinient when you want to manipulate the entire HTTP request line (path & http version), as you can use the method to set the entire line, then simply add a newline character and a bogus header name to make the final request valid:
 
+```go
+	req, err := http.NewRequest("GET http://anything/ HTTP/0.9\r\nx: ", "http://example.com/", strings.NewReader("body"))
+```
+
+The final request will be:
+
+```http
+GET http://anything/ HTTP/0.9
+x: / HTTP/1.1
+Host: example.com
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+Content-Length: 4
+
+body
+```
 Note that all patches have this comment to easily spot them in the code:
 
 ```
