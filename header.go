@@ -26,38 +26,36 @@ type Header map[string][]string
 
 // Add adds the key, value pair to the header.
 // It appends to any existing values associated with key.
-// The key is case insensitive; it is canonicalized by
-// [CanonicalHeaderKey].
+// The key is NOT canonicalized.
 func (h Header) Add(key, value string) {
-	textproto.MIMEHeader(h).Add(key, value)
+	h[key] = append(h[key], value)
 }
 
 // Set sets the header entries associated with key to the
 // single element value. It replaces any existing values
-// associated with key. The key is case insensitive; it is
-// canonicalized by [textproto.CanonicalMIMEHeaderKey].
-// To use non-canonical keys, assign to the map directly.
+// associated with key. The key is NOT canonicalized.
+// sw33tLie patch
 func (h Header) Set(key, value string) {
-	textproto.MIMEHeader(h).Set(key, value)
+	h[key] = []string{value}
 }
 
 // Get gets the first value associated with the given key. If
 // there are no values associated with the key, Get returns "".
-// It is case insensitive; [textproto.CanonicalMIMEHeaderKey] is
-// used to canonicalize the provided key. Get assumes that all
-// keys are stored in canonical form. To use non-canonical keys,
-// access the map directly.
+// The key is NOT canonicalized.
+// sw33tLie patch
 func (h Header) Get(key string) string {
-	return textproto.MIMEHeader(h).Get(key)
+	if v := h[key]; len(v) > 0 {
+		return v[0]
+	}
+	return ""
 }
 
 // Values returns all values associated with the given key.
-// It is case insensitive; [textproto.CanonicalMIMEHeaderKey] is
-// used to canonicalize the provided key. To use non-canonical
-// keys, access the map directly.
+// The key is NOT canonicalized.
 // The returned slice is not a copy.
+// sw33tLie patch
 func (h Header) Values(key string) []string {
-	return textproto.MIMEHeader(h).Values(key)
+	return h[key]
 }
 
 // get is like Get, but key must already be in CanonicalHeaderKey form.
@@ -76,10 +74,10 @@ func (h Header) has(key string) bool {
 }
 
 // Del deletes the values associated with key.
-// The key is case insensitive; it is canonicalized by
-// [CanonicalHeaderKey].
+// The key is NOT canonicalized.
+// sw33tLie patch
 func (h Header) Del(key string) {
-	textproto.MIMEHeader(h).Del(key)
+	delete(h, key)
 }
 
 // Write writes a header in wire format.
