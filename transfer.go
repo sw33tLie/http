@@ -252,8 +252,23 @@ func noResponseBodyExpected(requestMethod string) bool {
 	return requestMethod == "HEAD"
 }
 
+var skipSendingContentLength = false
+
+func DoNotSendContentLength() {
+	skipSendingContentLength = true
+}
+
+func DoSendContentLength() {
+	skipSendingContentLength = false
+}
+
 func (t *transferWriter) shouldSendContentLength() bool {
-	fmt.Println("shouldSendContentLength", t.TransferEncoding, t.ContentLength, t.Method)
+	fmt.Println("shouldSendContentLength", t.TransferEncoding, t.ContentLength, t.Method, skipSendingContentLength)
+
+	if skipSendingContentLength {
+		return false
+	}
+
 	if chunked(t.TransferEncoding) {
 		return false
 	}
