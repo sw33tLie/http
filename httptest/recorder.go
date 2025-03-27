@@ -14,7 +14,7 @@ import (
 
 	"github.com/sw33tLie/http"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 )
 
 // ResponseRecorder is an implementation of [http.ResponseWriter] that

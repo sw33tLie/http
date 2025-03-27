@@ -33,7 +33,7 @@ import (
 
 	"github.com/sw33tLie/http/internal/godebug"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 )
 
 // Errors used by the HTTP server.

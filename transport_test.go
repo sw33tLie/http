@@ -47,7 +47,7 @@ import (
 	"github.com/sw33tLie/http/internal/synctest"
 	"github.com/sw33tLie/http/internal/testcert"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 )
 
 // TODO: test 5 pipelined requests with responses: 1) OK, 2) OK, Connection: Close

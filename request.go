@@ -29,7 +29,7 @@ import (
 	"github.com/sw33tLie/http/httptrace"
 	"github.com/sw33tLie/http/internal/ascii"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 	"golang.org/x/net/idna"
 )
 

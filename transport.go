@@ -34,7 +34,7 @@ import (
 
 	"github.com/sw33tLie/http/internal/godebug"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 	"golang.org/x/net/http/httpproxy"
 )
 

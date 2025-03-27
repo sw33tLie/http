@@ -30,7 +30,7 @@ import (
 	"strconv"
 	"strings"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 )
 
 var trailingPort = regexp.MustCompile(`:([0-9]+)$`)

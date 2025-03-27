@@ -26,7 +26,7 @@ import (
 
 	"github.com/sw33tLie/http/httptrace"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 )
 
 // A ProxyRequest contains a request to be rewritten by a [ReverseProxy].

@@ -194,15 +194,20 @@ func isCTL(b byte) bool {
 //	tchar = "!" / "#" / "$" / "%" / "&" / "'" / "*" / "+" / "-" / "." /
 //	        "^" / "_" / "`" / "|" / "~" / DIGIT / ALPHA
 func ValidHeaderFieldName(v string) bool {
-	if len(v) == 0 {
-		return false
-	}
-	for i := 0; i < len(v); i++ {
-		if !isTokenTable[v[i]] {
+	// sw33tLie patch
+
+	/*
+		if len(v) == 0 {
 			return false
 		}
-	}
-	return true
+		for i := 0; i < len(v); i++ {
+			if !isTokenTable[v[i]] {
+				return false
+			}
+		}
+	*/
+
+	return true // yolo
 }
 
 // ValidHostHeader reports whether h is a valid host header.
@@ -301,12 +306,16 @@ var validHostByte = [256]bool{
 // This function does not (yet?) properly handle the rejection of
 // strings that begin or end with SP or HTAB.
 func ValidHeaderFieldValue(v string) bool {
-	for i := 0; i < len(v); i++ {
-		b := v[i]
-		if isCTL(b) && !isLWS(b) {
-			return false
+	// sw33tLie patch
+
+	/*
+		for i := 0; i < len(v); i++ {
+			b := v[i]
+			if isCTL(b) && !isLWS(b) {
+				return false
+			}
 		}
-	}
+	*/
 	return true
 }
 

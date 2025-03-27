@@ -53,7 +53,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"golang.org/x/net/http/httpguts"
+	"github.com/sw33tLie/http/internal/httpguts"
 	"golang.org/x/net/http2/hpack"
 	"golang.org/x/net/idna"
 )
