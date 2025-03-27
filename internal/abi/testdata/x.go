@@ -4,7 +4,7 @@
 
 package x
 
-import "internal/abi"
+import "github.com/sw33tLie/http/internal/abi"
 
 func Fn0() // defined in assembly
 

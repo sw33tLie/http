@@ -6,7 +6,6 @@ package synctest_test
 
 import (
 	"fmt"
-	"internal/synctest"
 	"iter"
 	"reflect"
 	"slices"
@@ -14,6 +13,8 @@ import (
 	"sync"
 	"testing"
 	"time"
+
+	"github.com/sw33tLie/http/internal/synctest"
 )
 
 func TestNow(t *testing.T) {

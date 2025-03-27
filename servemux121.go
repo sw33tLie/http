@@ -15,11 +15,12 @@ package http
 // Do not modify this file, it should remain frozen.
 
 import (
-	"internal/godebug"
 	"net/url"
 	"sort"
 	"strings"
 	"sync"
+
+	"github.com/sw33tLie/http/internal/godebug"
 )
 
 var httpmuxgo121 = godebug.New("httpmuxgo121")
