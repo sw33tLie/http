@@ -11,6 +11,7 @@ The standard `net/http` package enforces various RFC compliance checks that, whi
 The following modifications have been made:
 
 - **Unrestricted header values**: All characters are now allowed in header field names and values (including spaces, tabs and similar)
+- **No header canonicalization**: HTTP header names are not canonicalized anymore (e.g. `x-test: asd` is not changed to `X-Test: asd`)
 - **Default User-Agent**: The default user agent has been changed to a more common browser string (latest Chrome)
 
 Note that all patches have this comment to easily spot them in the code:
