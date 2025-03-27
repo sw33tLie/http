@@ -38,3 +38,53 @@ import (
 ```
 
 You're good to go!
+
+## Code example
+
+```go
+package main
+
+import (
+	"crypto/tls"
+	"fmt"
+	"strings"
+
+	http "github.com/sw33tLie/http"
+)
+
+func main() {
+	req, err := http.NewRequest("GET", "http://ds9nre2dtx8pg8tfskjhm2bk7bd41upj.oastify.com", strings.NewReader("request-body-here"))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	req.Header.Add("x-test\n 123\nx", "x")
+
+	http.DoNotSendContentLength()
+	// http.DoSendContentLength() // if you want to revert DoSendContentLength()
+
+	client := &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+			DisableCompression: true, // Avoid sending the Accept-Encoding: gzip header
+		},
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(resp.StatusCode)
+}
+
+```
+
+Collaborator request received:
+
+![Collaborator request received](./resources/collaborator-screenshot.png)
+
+Note how we crafted a malformed request but the library still sent it to the server.
