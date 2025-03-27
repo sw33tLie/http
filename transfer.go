@@ -9,7 +9,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"internal/godebug"
+	"github.com/sw33tLie/http/internal/godebug"
 	"io"
 	"maps"
 	"github.com/sw33tLie/http/httptrace"

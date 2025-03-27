@@ -15,15 +15,10 @@ import (
 	"crypto/tls"
 	"fmt"
 	"hash"
-	"internal/synctest"
 	"io"
 	"log"
 	"maps"
 	"net"
-	. "github.com/sw33tLie/http"
-	"github.com/sw33tLie/http/httptest"
-	"github.com/sw33tLie/http/httptrace"
-	"github.com/sw33tLie/http/httputil"
 	"net/textproto"
 	"net/url"
 	"os"
@@ -35,6 +30,12 @@ import (
 	"sync/atomic"
 	"testing"
 	"time"
+
+	. "github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/httptest"
+	"github.com/sw33tLie/http/httptrace"
+	"github.com/sw33tLie/http/httputil"
+	"github.com/sw33tLie/http/internal/synctest"
 )
 
 type testMode string

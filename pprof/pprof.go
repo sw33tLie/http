@@ -76,11 +76,8 @@ import (
 	"context"
 	"fmt"
 	"html"
-	"internal/godebug"
-	"internal/profile"
 	"io"
 	"log"
-	"github.com/sw33tLie/http"
 	"net/url"
 	"os"
 	"runtime"
@@ -90,6 +87,10 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/internal/godebug"
+	"github.com/sw33tLie/http/internal/profile"
 )
 
 func init() {

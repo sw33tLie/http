@@ -10,15 +10,11 @@ import (
 	"compress/gzip"
 	"errors"
 	"fmt"
-	"internal/testenv"
 	"io"
 	"io/fs"
 	"mime"
 	"mime/multipart"
 	"net"
-	"github.com/sw33tLie/http"
-	. "github.com/sw33tLie/http"
-	"github.com/sw33tLie/http/httptest"
 	"net/url"
 	"os"
 	"os/exec"
@@ -32,6 +28,11 @@ import (
 	"testing"
 	"testing/fstest"
 	"time"
+
+	"github.com/sw33tLie/http"
+	. "github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/httptest"
+	"github.com/sw33tLie/http/internal/testenv"
 )
 
 const (

@@ -8,11 +8,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"internal/profile"
-	"internal/testenv"
 	"io"
-	"github.com/sw33tLie/http"
-	"github.com/sw33tLie/http/httptest"
 	"path/filepath"
 	"runtime"
 	"runtime/pprof"
@@ -21,6 +17,11 @@ import (
 	"sync/atomic"
 	"testing"
 	"time"
+
+	"github.com/sw33tLie/http"
+	"github.com/sw33tLie/http/httptest"
+	"github.com/sw33tLie/http/internal/profile"
+	"github.com/sw33tLie/http/internal/testenv"
 )
 
 // TestDescriptions checks that the profile names under runtime/pprof package

@@ -7,7 +7,6 @@ package http_test
 import (
 	"bytes"
 	"context"
-	"internal/synctest"
 	"io"
 	"math"
 	"net"
@@ -15,6 +14,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	"github.com/sw33tLie/http/internal/synctest"
 )
 
 func fakeNetListen() *fakeNetListener {

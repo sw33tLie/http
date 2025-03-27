@@ -13,7 +13,6 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"internal/godebug"
 	"io"
 	"log"
 	"maps"
@@ -31,6 +30,8 @@ import (
 	"sync/atomic"
 	"time"
 	_ "unsafe" // for linkname
+
+	"github.com/sw33tLie/http/internal/godebug"
 
 	"golang.org/x/net/http/httpguts"
 )
