@@ -31,6 +31,11 @@ func (h Header) Add(key, value string) {
 	h[key] = append(h[key], value)
 }
 
+// AddRaw adds a raw header. The point of this is to not have a : on the header line
+func (h Header) AddRaw(key, value string) {
+	h[key] = append(h[key], value+"RAWHEADER") // We use this RAWHEADER label to then strip the : (ugly i know)
+}
+
 // Set sets the header entries associated with key to the
 // single element value. It replaces any existing values
 // associated with key. The key is NOT canonicalized.
@@ -204,7 +209,15 @@ func (h Header) writeSubset(w io.Writer, exclude map[string]bool, trace *httptra
 		for _, v := range kv.values {
 			v = headerNewlineToSpace.Replace(v)
 			v = textproto.TrimString(v)
-			for _, s := range []string{kv.key, ": ", v, "\r\n"} {
+
+			separator := ": "
+
+			if strings.HasSuffix(v, "RAWHEADER") {
+				separator = " "
+				v = strings.TrimSuffix(v, "RAWHEADER")
+			}
+
+			for _, s := range []string{kv.key, separator, v, "\r\n"} {
 				if _, err := ws.WriteString(s); err != nil {
 					headerSorterPool.Put(sorter)
 					return err
