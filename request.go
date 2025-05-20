@@ -612,6 +612,8 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 				fmt.Println("net/http fork warning: request doesn't end with double crlf. Request might timeout.")
 			}
 		}
+
+		method = strings.ReplaceAll(method, "{HOST}", r.Host)
 		_, err = fmt.Fprintf(w, "%s", method)
 		if err != nil {
 			return err
