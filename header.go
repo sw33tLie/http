@@ -33,7 +33,7 @@ func (h Header) Add(key, value string) {
 
 // AddRaw adds a raw header. The point of this is to not have a : on the header line
 func (h Header) AddRaw(key, value string) {
-	h[key] = append(h[key], value+"RAWHEADER") // We use this RAWHEADER label to then strip the : (ugly i know)
+	h[key] = append(h[key], value+"NOCOLON") // We use this RAWHEADER label to then strip the : (ugly i know)
 }
 
 // Set sets the header entries associated with key to the
@@ -212,9 +212,9 @@ func (h Header) writeSubset(w io.Writer, exclude map[string]bool, trace *httptra
 
 			separator := ": "
 
-			if strings.HasSuffix(v, "RAWHEADER") {
+			if strings.HasSuffix(v, "NOCOLON") {
 				separator = " "
-				v = strings.TrimSuffix(v, "RAWHEADER")
+				v = strings.TrimSuffix(v, "NOCOLON")
 			}
 
 			for _, s := range []string{kv.key, separator, v, "\r\n"} {
