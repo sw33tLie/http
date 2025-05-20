@@ -605,8 +605,12 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 		method := r.Method
 		_, err = fmt.Fprintf(w, "%s\r\n", method)
 		if err != nil {
+			fmt.Println("Writing err: ", method)
+
 			return err
 		}
+
+		fmt.Println("Writing : ", method)
 
 		// Mark the body as closed since we're not going to write it
 		closed = true
