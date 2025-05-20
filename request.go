@@ -600,6 +600,25 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 		}
 	}()
 
+	// If MethodOnlyRequest is enabled, only send the method
+	if MethodOnlyRequest {
+		method := r.Method
+		_, err = fmt.Fprintf(w, "%s\r\n", method)
+		if err != nil {
+			return err
+		}
+
+		// Mark the body as closed since we're not going to write it
+		closed = true
+		r.closeBody()
+
+		if trace != nil && trace.WroteHeaders != nil {
+			trace.WroteHeaders()
+		}
+
+		return nil
+	}
+
 	// Find the target host. Prefer the Host: header, but if that
 	// is not given, use the host from the request URL.
 	//
@@ -1581,4 +1600,22 @@ func requestMethodUsuallyLacksBody(method string) bool {
 func (r *Request) requiresHTTP1() bool {
 	return hasToken(r.Header.Get("Connection"), "upgrade") &&
 		ascii.EqualFold(r.Header.Get("Upgrade"), "websocket")
+}
+
+// MethodOnlyRequest controls whether requests are sent with only the HTTP method.
+// When true, the request will only contain the method followed by CRLF, omitting
+// the path, HTTP version, headers, and body. This is intended for security testing
+// and will result in non-compliant HTTP requests.
+var MethodOnlyRequest bool
+
+// EnableMethodOnlyRequest sets the MethodOnlyRequest flag to true,
+// causing HTTP requests to only send the method.
+func EnableMethodOnlyRequest() {
+	MethodOnlyRequest = true
+}
+
+// DisableMethodOnlyRequest sets the MethodOnlyRequest flag to false,
+// restoring normal HTTP request behavior.
+func DisableMethodOnlyRequest() {
+	MethodOnlyRequest = false
 }
