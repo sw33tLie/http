@@ -254,6 +254,7 @@ func noResponseBodyExpected(requestMethod string) bool {
 
 // sw33tLie patch
 var skipSendingContentLength = false
+var MethodOnlyRequest = false // Sends an HTTP request only with a method. The idea is you put the whole raw request inside the method
 
 // sw33tLie patch
 func DoNotSendContentLength() {
@@ -263,6 +264,16 @@ func DoNotSendContentLength() {
 // sw33tLie patch
 func DoSendContentLength() {
 	skipSendingContentLength = false
+}
+
+// sw33tLie patch
+func EnableMethodOnlyRequest() {
+	MethodOnlyRequest = true
+}
+
+// sw33tLie patch
+func DisableMethodOnlyRequest() {
+	MethodOnlyRequest = false
 }
 
 func (t *transferWriter) shouldSendContentLength() bool {
@@ -295,6 +306,13 @@ func (t *transferWriter) shouldSendContentLength() bool {
 }
 
 func (t *transferWriter) writeHeader(w io.Writer, trace *httptrace.ClientTrace) error {
+
+	// sw33tLie Patch
+	// If MethodOnlyRequest is enabled, don't write any headers
+	if MethodOnlyRequest {
+		return nil
+	}
+
 	if t.Close && !hasToken(t.Header.get("Connection"), "close") {
 		if _, err := io.WriteString(w, "Connection: close\r\n"); err != nil {
 			return err
@@ -355,6 +373,18 @@ func (t *transferWriter) writeHeader(w io.Writer, trace *httptrace.ClientTrace) 
 
 // always closes t.BodyCloser
 func (t *transferWriter) writeBody(w io.Writer) (err error) {
+
+	// sw33tLie Patch
+	// If MethodOnlyRequest is enabled, don't write the body
+	if MethodOnlyRequest {
+		if t.BodyCloser != nil {
+			if closeErr := t.BodyCloser.Close(); closeErr != nil {
+				return closeErr
+			}
+		}
+		return nil
+	}
+
 	var ncopy int64
 	closed := false
 	defer func() {
@@ -1144,7 +1174,7 @@ func isKnownInMemoryReader(r io.Reader) bool {
 }
 
 // bufioFlushWriter is an io.Writer wrapper that flushes all writes
-// on its wrapped writer if it's a *bufio.Writer.
+// on its wrapped writer if it's a *bufio.Writer.f
 type bufioFlushWriter struct{ w io.Writer }
 
 func (fw bufioFlushWriter) Write(p []byte) (n int, err error) {
