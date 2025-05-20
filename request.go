@@ -603,14 +603,19 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 	// If MethodOnlyRequest is enabled, only send the method
 	if MethodOnlyRequest {
 		method := r.Method
-		_, err = fmt.Fprintf(w, "%s\r\n", method)
-		if err != nil {
-			fmt.Println("Writing err: ", method)
 
+		// if request doesn't end with double crlf
+		if !strings.HasSuffix(method, "\r\n\r\n") {
+			// and if it's not one with body (double crlf elsewhere)
+			if !strings.Contains(method, "\r\n\r\n") {
+				// warn user
+				fmt.Println("net/http fork warning: request doesn't end with double crlf. Request might timeout.")
+			}
+		}
+		_, err = fmt.Fprintf(w, "%s", method)
+		if err != nil {
 			return err
 		}
-
-		fmt.Println("Writing : ", method)
 
 		// Mark the body as closed since we're not going to write it
 		closed = true
