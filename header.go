@@ -213,7 +213,7 @@ func (h Header) writeSubset(w io.Writer, exclude map[string]bool, trace *httptra
 			separator := ": "
 
 			if strings.HasSuffix(v, "NOCOLON") {
-				separator = " "
+				separator = ""
 				v = strings.TrimSuffix(v, "NOCOLON")
 			}
 
